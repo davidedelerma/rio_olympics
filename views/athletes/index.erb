@@ -1,0 +1,7 @@
+<h1> List of Athletes</h1>
+<h3><a href="/athlete/new">Add new athlete</a><br></h3>
+
+<% @athletes.each do |athlete| %>
+  <a href="/athlete/<%= athlete.id %>"> <%= athlete.name %> <%= athlete.last_name  %></a> <%= athlete.nation.name  %> <b> Disciplines:</b> <% athlete.events_attended.each do |event| %> 
+  <%= event.discipline %> <% end %><br> 
+<% end %>

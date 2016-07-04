@@ -1,6 +1,7 @@
 require('pry-byebug')
 require_relative('../db/sql_runner')
 require_relative('athlete')
+require_relative('medal')
 
 class Nation
 
@@ -16,6 +17,18 @@ class Nation
     nation = run(sql).first
     result = Nation.new( nation )
     return result
+  end
+
+  def self.update(options)
+    sql = "UPDATE athletes SET 
+          name = '#{options['name']}',
+          WHERE id = '#{options['id']}';"
+    run(sql)
+  end
+
+  def self.destroy(id)
+    sql="DELETE FROM nations WHERE id=#{id};"
+    run(sql)
   end
 
   def athletes() #tested
@@ -39,23 +52,23 @@ class Nation
 
   def gold_medals_won_by_nation()
     tot_medals=medals_won_by_nation
-    return tot_medals.select {|medal| medal.medals_type == "gold"}.count
+    return tot_medals.select {|medal| medal.medals_type == "gold"}
   end
 
   def silver_medals_won_by_nation()
     tot_medals=medals_won_by_nation
-    return tot_medals.select {|medal| medal.medals_type == "silver"}.count
+    return tot_medals.select {|medal| medal.medals_type == "silver"}
   end
 
   def bronze_medals_won_by_nation()
     tot_medals=medals_won_by_nation
-    return tot_medals.select {|medal| medal.medals_type == "bronze"}.count
+    return tot_medals.select {|medal| medal.medals_type == "bronze"}
   end
 
   def tot_points_earned_by_nation()
-    gold_medals = gold_medals_won_by_nation
-    silver_medals = silver_medals_won_by_nation
-    bronze_medals = bronze_medals_won_by_nation
+    gold_medals = gold_medals_won_by_nation.count
+    silver_medals = silver_medals_won_by_nation.count
+    bronze_medals = bronze_medals_won_by_nation.count
     tot_points = (gold_medals * 5) + (silver_medals * 3) + (bronze_medals * 1)
     return tot_points
   end

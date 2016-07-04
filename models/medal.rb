@@ -1,5 +1,6 @@
 require('pry-byebug')
 require_relative('../db/sql_runner')
+require_relative('event')
 
 class Medal
 
@@ -17,6 +18,25 @@ class Medal
     medal = run(sql).first
     result = Medal.new( medal )
     return result
+  end
+
+  def event()
+    sql = "SELECT * FROM events WHERE id = #{@event_id}"
+    return Event.map_item(sql)
+  end
+
+  def self.update(options)
+    sql = "UPDATE medals SET 
+          event_id = '#{options['event_id']}',
+          athlete_id = '#{options['athlete_id']}',
+          medals_type = '#{options['medals_type']}'
+          WHERE id = '#{options['id']}';"
+    run(sql)
+  end
+
+  def self.destroy(id)
+    sql="DELETE FROM medals WHERE id=#{id};"
+    run(sql)
   end
 
   def self.find(id) #tested

@@ -1,0 +1,14 @@
+<h3><b>Name:</b></h3>
+<p><%= @athlete.name() %></p>
+<h3><b>Last Name:</b></h3>
+<p><%= @athlete.last_name() %></p>
+<h3><b>Nation:</b></h3>
+<p><%= @athlete.nation.name %> </p>
+<b>Medals won:</b>
+<% @athlete.medals.each do |medal|  %>
+<p><%= medal.medals_type  %> <b>Event:</b> <%= medal.event.discipline  %></p>
+<% end %>
+<div>
+  <form action="/athlete/<%= @athlete.id %>/delete" method="post">
+    <input type="submit" value="Delete" > </form>
+    <a href="/athlete/<%= @athlete.id %>/edit"> <button>Edit</button> </a> </div>

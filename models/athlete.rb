@@ -1,5 +1,8 @@
 require('pry-byebug')
 require_relative('../db/sql_runner')
+require_relative('medal')
+require_relative('event')
+require_relative('nation')
 
 class Athlete
 
@@ -32,8 +35,13 @@ class Athlete
   end
 
   def medals()
-    sql="SELECT * FROM medals WHERE athlete_id = #{@id} AND medals_type != 'no';" #add condition: and medal_type is not no
+    sql="SELECT * FROM medals WHERE athlete_id = #{@id} AND medals_type != 'no';"
     return Medal.map_items(sql) 
+  end
+
+  def medal_types_won_by_athlete()
+    medals_list=self.medals
+    return medals_list.map{|medal| medal.medals_type}
   end
 
   def self.find(id) #tested
@@ -48,6 +56,20 @@ class Athlete
 
   def self.delete_all() #tested
     sql = "DELETE FROM athletes"
+    run(sql)
+  end
+
+  def self.update(options)
+    sql = "UPDATE athletes SET 
+          name = '#{options['name']}',
+          last_name = '#{options['last_name']}',
+          nation_id = '#{options['nation_id']}'
+          WHERE id = '#{options['id']}';"
+    run(sql)
+  end
+
+  def self.destroy(id)
+    sql="DELETE FROM athletes WHERE id=#{id};"
     run(sql)
   end
 

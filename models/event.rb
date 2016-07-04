@@ -1,5 +1,8 @@
 require('pry-byebug')
 require_relative('../db/sql_runner')
+require_relative('nation')
+require_relative('athlete')
+require_relative('medal')
 
 class Event
 
@@ -16,6 +19,54 @@ class Event
     event = run(sql).first
     result = Event.new( event )
     return result
+  end
+
+  def self.update(options)
+    sql = "UPDATE events SET 
+          event_date = '#{options['event_date']}',
+          discipline = '#{options['discipline']}'
+          WHERE id = '#{options['id']}';"
+    run(sql)
+  end
+
+  def self.destroy(id)
+    sql="DELETE FROM events WHERE id=#{id};"
+    run(sql)
+  end
+
+  def medalist()
+    sql="SELECT * FROM medals WHERE event_id = #{@id} AND medals_type != 'no';"
+    medalists = Medal.map_items(sql) 
+    return remove_duplicate_medalist(medalists)
+  end
+
+  def remove_duplicate_medalist(medalist_list)
+    medalist_list = medalist_list.uniq {|medalist| medalist.medals_type}
+    return medalist_list
+  end
+
+  def nation_won_gold_medal()
+    tot_medalists=medalist()
+    gold = tot_medalists.select {|medal| medal.medals_type == "gold"}
+    athlete_gold = Athlete.find(gold.first.athlete_id)
+    nation_gold = Nation.find(athlete_gold.nation_id)
+    return nation_gold
+  end
+
+  def nation_won_silver_medal()
+    tot_medalists=medalist()
+    silver = tot_medalists.select {|medal| medal.medals_type == "silver"}
+    athlete_silver = Athlete.find(silver.first.athlete_id)
+    nation_silver = Nation.find(athlete_silver.nation_id)
+    return nation_silver
+  end
+
+  def nation_won_bronze_medal()
+    tot_medalists=medalist()
+    bronze = tot_medalists.select {|medal| medal.medals_type == "bronze"}
+    athlete_bronze = Athlete.find(bronze.first.athlete_id)
+    nation_bronze = Nation.find(athlete_bronze.nation_id)
+    return nation_bronze
   end
 
   def self.find(id) #tested

@@ -1,0 +1,6 @@
+<h1> List of Nations</h1>
+<h3><a href="/nation/new">Insert new nation</a><br></h3>
+
+<% @nations.each do |nation| %>
+  <a href="/nation/<%= nation.id %>"> <%= nation.name %> </a><br> 
+<% end %>
