@@ -9,7 +9,6 @@ class Nation
   def initialize(options)
     @id = options['id']
     @name = options['name']
-    @medal_points={'gold' => 5, 'silver' => 3, 'bronze' =>1}
   end
 
   def save()
@@ -25,14 +24,50 @@ class Nation
     return athletes_data.map {|athlete| Athlete.new(athlete)} 
   end
 
-  def points_earned_by_athlete(athlete)
-    medals_earned = athlete.medals
-    medals_array = medals_earned.map{|medal| medal.medals_type}
-    athlete_points = []
-    for medal in medals_array
-      athlete_points << @medal_points[medal]
+  def medals_won_by_nation()
+    nation_medals=[]
+    for athlete in self.athletes
+      nation_medals << athlete.medals
     end
-    return athlete_points
+    return remove_duplicate_medals(nation_medals.flatten) 
+  end
+
+  def remove_duplicate_medals(nation_medals) 
+    medals_won = nation_medals.uniq {|medal| medal.event_id}
+    return medals_won
+  end
+
+  def gold_medals_won_by_nation()
+    tot_medals=medals_won_by_nation
+    return tot_medals.select {|medal| medal.medals_type == "gold"}.count
+  end
+
+  def silver_medals_won_by_nation()
+    tot_medals=medals_won_by_nation
+    return tot_medals.select {|medal| medal.medals_type == "silver"}.count
+  end
+
+  def bronze_medals_won_by_nation()
+    tot_medals=medals_won_by_nation
+    return tot_medals.select {|medal| medal.medals_type == "bronze"}.count
+  end
+
+  def tot_points_earned_by_nation()
+    gold_medals = gold_medals_won_by_nation
+    silver_medals = silver_medals_won_by_nation
+    bronze_medals = bronze_medals_won_by_nation
+    tot_points = (gold_medals * 5) + (silver_medals * 3) + (bronze_medals * 1)
+    return tot_points
+  end
+
+  def self.ranking()
+    nations_array = Nation.all
+    rank_hash = Hash.new(0)
+    for nation in nations_array
+      rank_hash[nation.name] = nation.tot_points_earned_by_nation
+    end
+    rank_hash = rank_hash.sort_by {|_key, value| value}.reverse.to_h
+    return rank_hash
   end
 
   def self.find(id) #tested
