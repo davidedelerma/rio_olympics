@@ -8,8 +8,8 @@ class Medal
 
   def initialize(options)
     @id = options['id']
-    @event_id = options['event_id']
-    @athlete_id = options['athlete_id']
+    @event_id = options['event_id'].to_i
+    @athlete_id = options['athlete_id'].to_i
     @medals_type = options['medals_type']
   end
 
@@ -17,6 +17,7 @@ class Medal
     sql = "INSERT INTO medals (event_id, athlete_id, medals_type) VALUES ( '#{@event_id}', '#{@athlete_id}','#{medals_type}') RETURNING *"
     medal = run(sql).first
     result = Medal.new( medal )
+    @id = result.id
     return result
   end
 

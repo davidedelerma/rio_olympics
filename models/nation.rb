@@ -16,6 +16,7 @@ class Nation
     sql = "INSERT INTO nations (name) VALUES ('#{@name}') RETURNING *"
     nation = run(sql).first
     result = Nation.new( nation )
+    @id = result.id
     return result
   end
 

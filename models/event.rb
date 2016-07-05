@@ -18,13 +18,13 @@ class Event
     sql = "INSERT INTO events (event_date, discipline) VALUES ( '#{@event_date}', '#{@discipline}') RETURNING *"
     event = run(sql).first
     result = Event.new( event )
+    @id = result.id
     return result
   end
 
   def self.update(options)
     sql = "UPDATE events SET 
-          event_date = '#{options['event_date']}',
-          discipline = '#{options['discipline']}'
+          event_date = '#{options['event_date']}'
           WHERE id = '#{options['id']}';"
     run(sql)
   end
@@ -48,6 +48,7 @@ class Event
   def nation_won_gold_medal()
     tot_medalists=medalist()
     gold = tot_medalists.select {|medal| medal.medals_type == "gold"}
+    return if gold == []
     athlete_gold = Athlete.find(gold.first.athlete_id)
     nation_gold = Nation.find(athlete_gold.nation_id)
     return nation_gold
@@ -56,6 +57,7 @@ class Event
   def nation_won_silver_medal()
     tot_medalists=medalist()
     silver = tot_medalists.select {|medal| medal.medals_type == "silver"}
+    return if silver == []
     athlete_silver = Athlete.find(silver.first.athlete_id)
     nation_silver = Nation.find(athlete_silver.nation_id)
     return nation_silver
@@ -64,6 +66,7 @@ class Event
   def nation_won_bronze_medal()
     tot_medalists=medalist()
     bronze = tot_medalists.select {|medal| medal.medals_type == "bronze"}
+    return if bronze == []
     athlete_bronze = Athlete.find(bronze.first.athlete_id)
     nation_bronze = Nation.find(athlete_bronze.nation_id)
     return nation_bronze

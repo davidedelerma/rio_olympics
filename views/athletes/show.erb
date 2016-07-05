@@ -6,9 +6,12 @@
 <p><%= @athlete.nation.name %> </p>
 <b>Medals won:</b>
 <% @athlete.medals.each do |medal|  %>
-<p><%= medal.medals_type  %> <b>Event:</b> <%= medal.event.discipline  %></p>
+<p><%= medal.medals_type  %> event: <%= medal.event.discipline  %></p>
 <% end %>
 <div>
   <form action="/athlete/<%= @athlete.id %>/delete" method="post">
     <input type="submit" value="Delete" > </form>
-    <a href="/athlete/<%= @athlete.id %>/edit"> <button>Edit</button> </a> </div>
+    <a href="/athlete/<%= @athlete.id %>/edit"> <button>Edit</button> </a>
+    <form action="/medal/new" method="get">
+      <button name="athlete_id" type="submit" value=<%= @athlete.id  %> >Add event</button>
+    </form></div>

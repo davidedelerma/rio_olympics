@@ -23,21 +23,20 @@ end
 
 get '/event' do
   @events = Event.all()
-  erb(:'athletes/index')
+  erb(:'events/index')
 end
 
-# get '/athlete/:id/edit' do
-#   @athlete = Athlete.find(params[:id])
-#   @nations = Nation.all()
-#   erb(:'athletes/edit')
-# end
+get '/event/:id/edit' do
+  @event = Event.find(params[:id])
+  erb(:'events/edit')
+end
 
-# post '/athlete/:id' do
-#   @athlete = Athlete.update(params)
-#   redirect to("/athlete/#{params[:id]}")
-# end
+post '/event/:id' do
+  @event = Event.update(params)
+  redirect to("/event/#{params[:id]}")
+end
 
-# post '/athlete/:id/delete' do 
-#   Athlete.destroy( params[:id] )
-#   redirect to('/athlete')
-# end
+post '/event/:id/delete' do 
+  Event.destroy( params[:id] )
+  redirect to('/event')
+end

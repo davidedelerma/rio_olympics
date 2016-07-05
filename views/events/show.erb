@@ -1,0 +1,27 @@
+<h1><b>Discipline:</b></h1>
+<p><%= @event.discipline() %></p>
+<h2><b>Date:</b></h2>
+<p><%= @event.event_date() %></p>
+<h3><b>Gold Medal</b></h3>
+<p><% if @event.nation_won_gold_medal == nil %> 
+<%= "No gold medal inserted yet"  %>
+<% else %>
+<%=  @event.nation_won_gold_medal.name %>
+<% end %></p>
+<h3><b>Silver Medal</b></h3>
+<p><% if @event.nation_won_silver_medal == nil %> 
+<%= "No silver medal inserted yet"  %>
+<% else %>
+<%=  @event.nation_won_silver_medal.name %>
+<% end %></p>
+<h3><b>Bronze Medal</b></h3>
+<p><% if @event.nation_won_bronze_medal == nil %> 
+<%= "No bronze medal inserted yet"  %>
+<% else %>
+<%=  @event.nation_won_bronze_medal.name %>
+<% end %></p>
+
+<div>
+  <form action="/event/<%= @event.id %>/delete" method="post">
+    <input type="submit" value="Delete" > </form>
+    <a href="/event/<%= @event.id %>/edit"> <button>Edit</button> </a> </div>

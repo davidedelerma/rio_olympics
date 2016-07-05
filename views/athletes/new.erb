@@ -11,5 +11,17 @@
       <%= nation.name%></option>
       <%end%>
   </select>
+  <select name = "event_id">
+    <% @events.each do |event| %>
+    <option value = "<%= event.id%>">
+      <%= event.discipline%></option>
+      <%end%>
+  </select>
+  <select name = "medals_type">
+    <option value = "gold"> Gold </option>
+    <option value = "silver"> Silver </option>
+    <option value = "bronze"> Bronze </option>
+    <option value = "no"> No Medal </option>
+  </select>
   <input type="submit" value="Submit">
 </form>

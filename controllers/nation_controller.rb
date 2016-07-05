@@ -1,7 +1,8 @@
 require('pry-byebug')
 require_relative('../models/athlete')
-require_relative('../models/nation')
+require_relative('../models/medal')
 require_relative('../models/event')
+require_relative('../models/nation')
 
 get '/nation/new' do
   erb(:'nations/new')

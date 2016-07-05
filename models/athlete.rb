@@ -12,7 +12,7 @@ class Athlete
     @id = options['id']
     @name = options['name']
     @last_name = options['last_name']
-    @nation_id = options['nation_id']
+    @nation_id = options['nation_id'].to_i
   end
 
 
@@ -20,6 +20,7 @@ class Athlete
     sql = "INSERT INTO athletes (name, last_name, nation_id) VALUES ('#{@name}', '#{@last_name}', '#{@nation_id}') RETURNING *"
     athlete = run(sql).first
     result = Athlete.new( athlete )
+    @id = result.id
     return result
   end
 
