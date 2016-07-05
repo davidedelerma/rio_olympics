@@ -9,7 +9,7 @@ class Event
   attr_reader(:id,:event_date,:discipline)
 
   def initialize(options)
-    @id = options['id']
+    @id = options['id'].to_i
     @event_date = options['event_date']
     @discipline = options['discipline']
   end

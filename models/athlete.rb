@@ -9,7 +9,7 @@ class Athlete
   attr_reader(:id,:name,:last_name,:nation_id)
 
   def initialize(options)
-    @id = options['id']
+    @id = options['id'].to_i
     @name = options['name']
     @last_name = options['last_name']
     @nation_id = options['nation_id'].to_i

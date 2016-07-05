@@ -7,7 +7,7 @@ class Medal
   attr_reader(:id,:event_id,:athlete_id,:medals_type)
 
   def initialize(options)
-    @id = options['id']
+    @id = options['id'].to_i
     @event_id = options['event_id'].to_i
     @athlete_id = options['athlete_id'].to_i
     @medals_type = options['medals_type']
