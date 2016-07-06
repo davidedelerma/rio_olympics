@@ -1,8 +1,11 @@
-<h1>Edit an Event</h1>
-
-<form action="/event/<%= @event.id %>" method="post">
-  <label for="event_date"> Event Date:</label>
-  <input type="Date" name="event_date" value="<%= @event.event_date %>">
-  <label for="discipline"> Discipline:   <%=@event.discipline%></label>
-  <input type="submit" value="Update">
-</form>
+<div class="insert">
+  <h1 class="title">Edit an Event</h1>
+  <div class="add">
+    <form action="/event/<%= @event.id %>" method="post">
+      <label for="event_date"> Event Date:</label>
+      <input type="Date" name="event_date" value="<%= @event.event_date %>">
+      <label for="discipline"> Discipline:   <%=@event.discipline%></label>
+      <input type="submit" value="Update">
+    </form>
+  </div>
+</div>

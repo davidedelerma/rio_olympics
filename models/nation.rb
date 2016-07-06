@@ -76,12 +76,13 @@ class Nation
 
   def self.ranking()
     nations_array = Nation.all
-    rank_hash = Hash.new(0)
-    for nation in nations_array
-      rank_hash[nation.name] = nation.tot_points_earned_by_nation
-    end
-    rank_hash = rank_hash.sort_by {|_key, value| value}.reverse.to_h
-    return rank_hash
+    nations_array.sort! { |a,b| b.tot_points_earned_by_nation <=> a.tot_points_earned_by_nation }
+    # rank_hash = Hash.new(0)
+    # for nation in nations_array
+    #   rank_hash[nation.name] = nation.tot_points_earned_by_nation
+    # end
+    # rank_hash = rank_hash.sort_by {|_key, value| value}.reverse.to_h
+    # return rank_hash
   end
 
   def self.find(id) #tested

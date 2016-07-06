@@ -1,6 +1,125 @@
+html { 
+  background: url(rio_background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.show{
+  margin: auto;
+  width:60%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.show h3 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 28px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.show p {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.show .buttons form {
+display: inline;
+}
+
+
+.insert{
+  margin: auto;
+  width:60%;
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+.insert .add{
+  font-family: 'Raleway', sans-serif;
+  font-size: 23px;
+  color: #fff;
+}
+
+
+.list {
+  margin: auto;
+  width:30%;
+  /*background-color: red;*/
+}
+
+.title {
+  position: relative;
+  float: center;
+  margin-top: 5%;
+  font-size: 50px;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+}
+
+.contestual{
+  position: fixed;
+  top: 20%;
+  left: 0%;  
+}
+.contestual a {
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  color: #fff;
+  display: inline-block;
+  transition: .3s background-color;
+  background-color: #0080ff;
+  padding:5px;
+  margin:-5px;
+  min-width: 12%;
+  text-align: center;
+}
+
+.contestual a:hover {
+  background-color: #1a8cff;
+}
+ 
+.contestual a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+
+.list a {
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  color: #fff;
+  display: inline-block;
+  transition: .3s background-color;
+}
+
+.list a:hover{
+  font-size:25px;
+}
+
+.list a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+
+.nav {
+  position: fixed;
+  top: 0%;
+  right: 0%;
+}
+
 .nav a {
   text-decoration: none;
-  font-family: arial;
+  font-family: 'Raleway', sans-serif;
   font-size: 25px;
   color: #fff;
   display: inline-block;
@@ -24,10 +143,11 @@
 
 .logo{
   display: block;
-  width: 45% ;
+  width: 5% ;
   height: auto;
   -webkit-filter: drop-shadow(1px 1px 3px #222);
 }
+
 
 * {
    box-sizing: border-box;

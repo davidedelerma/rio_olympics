@@ -15,7 +15,7 @@ class Medal
   end
 
   def save()
-    return if check_if_nation_has_won_medal
+    return if check_if_nation_has_won_medal == true
     sql = "INSERT INTO medals (event_id, athlete_id, medals_type) VALUES ( '#{@event_id}', '#{@athlete_id}','#{medals_type}') RETURNING *"
     medal = run(sql).first
     result = Medal.new( medal )

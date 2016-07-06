@@ -1,7 +1,11 @@
-<h1> List of Athletes</h1>
-<h3><a href="/athlete/new">Add new athlete</a><br></h3>
+<div class="contestual">
+  <a href="/athlete/new">Add new athlete</a><br>
+</div> 
 
-<% @athletes.each do |athlete| %>
-  <a href="/athlete/<%= athlete.id %>"> <%= athlete.name %> <%= athlete.last_name  %></a> <%= athlete.nation.name  %> <b> Disciplines:</b> <% athlete.events_attended.each do |event| %> 
-  <%= event.discipline %> <% end %><br> 
+<div class="list">
+<h1 class="title"> List of Athletes</h1>
+  <% @athletes.each do |athlete| %>
+    <a href="/athlete/<%= athlete.id %>"> <%= athlete.name %> <%= athlete.last_name  %>; <%= athlete.nation.name  %>  ; <% athlete.events_attended.each do |event| %> 
+    <%= event.discipline %> <% end %> </a> <br> 
 <% end %>
+</div>

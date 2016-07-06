@@ -1,5 +1,31 @@
-<h1>Final Ranking</h1>
+<div class="show">
+<h3 class="title">Final Ranking</h3>
 
-<% @ranking.keys.each do |key|  %>
-<p><%= key  %> <%= @ranking[key] %></p>
-<% end %>
+
+
+<table align="center" >
+<tr>
+
+<th> Country </th>
+<th> Gold Medals </th>
+<th> Silver Medals </th>
+<th> Bronze Medals </th>
+<th> Total Points </th>
+</tr>
+<% @ranking.each do |nation|  %>
+
+<tr>
+
+ <td><%= nation.name %></td>
+  <td><%= nation.gold_medals_won_by_nation().count %></td>
+  <td><%= nation.silver_medals_won_by_nation().count %></td>
+  <td><%= nation.bronze_medals_won_by_nation().count %></td>
+  <td><%= nation.tot_points_earned_by_nation() %></td>
+  
+  
+  <% end %>
+  
+</tr>
+
+</table>
+<div class="show">

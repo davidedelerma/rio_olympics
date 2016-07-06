@@ -1,27 +1,32 @@
-<h1>Insert an Athlete</h1>
-
-<form action="/athlete" method="post">
-  <label for="name"> Name:</label>
-  <input type="text" name="name">
-  <label for="last_name"> Last Name:</label>
-  <input type="text" name="last_name">
-  <select name = "nation_id">
-    <% @nations.each do |nation| %>
-    <option value = "<%= nation.id%>">
-      <%= nation.name%></option>
-      <%end%>
-  </select>
-  <select name = "event_id">
-    <% @events.each do |event| %>
-    <option value = "<%= event.id%>">
-      <%= event.discipline%></option>
-      <%end%>
-  </select>
-  <select name = "medals_type">
-    <option value = "gold"> Gold </option>
-    <option value = "silver"> Silver </option>
-    <option value = "bronze"> Bronze </option>
-    <option value = "no"> No Medal </option>
-  </select>
-  <input type="submit" value="Submit">
-</form>
+<div class="insert">
+  <h1 class="title">Insert an Athlete</h1>
+  <div class="add">
+    <form action="/athlete" method="post">
+    <label for="name"> Name:</label><br>
+      <input type="text" name="name"><br>
+      <label for="last_name"> Last Name:</label><br>
+      <input type="text" name="last_name"><br>
+      <br>
+      <select name = "nation_id">
+        <% @nations.each do |nation| %>
+        <option value = "<%= nation.id%>">
+          <%= nation.name%></option>
+          <%end%>
+        </select>
+        <select name = "event_id">
+          <% @events.each do |event| %>
+          <option value = "<%= event.id%>">
+            <%= event.discipline%></option>
+            <%end%>
+          </select>
+          <select name = "medals_type">
+            <option value = "gold"> Gold </option>
+            <option value = "silver"> Silver </option>
+            <option value = "bronze"> Bronze </option>
+            <option value = "no"> No Medal </option>
+          </select><br>
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </div>

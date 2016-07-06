@@ -1,17 +1,19 @@
-<h3><b>Name:</b></h3>
-<p><%= @athlete.name() %></p>
-<h3><b>Last Name:</b></h3>
-<p><%= @athlete.last_name() %></p>
-<h3><b>Nation:</b></h3>
-<p><%= @athlete.nation.name %> </p>
-<b>Medals won:</b>
-<% @athlete.medals.each do |medal|  %>
-<p><%= medal.medals_type  %> event: <%= medal.event.discipline  %></p>
-<% end %>
-<div>
-  <form action="/athlete/<%= @athlete.id %>/delete" method="post">
-    <input type="submit" value="Delete" > </form>
-    <a href="/athlete/<%= @athlete.id %>/edit"> <button>Edit</button> </a>
-    <form action="/medal/new" method="get">
-      <button name="athlete_id" type="submit" value=<%= @athlete.id  %> >Add event</button>
-    </form></div>
+<div class="show">
+  <h3>Name:</h3>
+  <p><%= @athlete.name() %></p>
+  <h3>Last Name:</h3>
+  <p><%= @athlete.last_name() %></p>
+  <h3>Nation:</h3>
+  <p><%= @athlete.nation.name %> </p>
+  <h3>Medals won:</h3>
+  <% @athlete.medals.each do |medal|  %>
+  <p><%= medal.medals_type  %> medal, event: <%= medal.event.discipline  %></p>
+  <% end %>
+    <div class="buttons">
+      <form action="/athlete/<%= @athlete.id %>/delete" method="post">
+        <input type="submit" value="Delete" > </form>
+      <a href="/athlete/<%= @athlete.id %>/edit"> <button>Edit</button> </a>
+      <form action="/medal/new" method="get">
+        <button name="athlete_id" type="submit" value=<%= @athlete.id  %> >Add event</button></form>
+    </div>
+</div>

@@ -1,6 +1,10 @@
-<h1> List of Events</h1>
-<h3><a href="/event/new">Insert new event</a><br></h3>
+<div class="contestual">
+  <a href="/event/new">Insert new event</a><br>
+</div> 
 
+<div class="list">
+<h1 class ="title"> List of Events</h1>
 <% @events.each do |event| %>
   <a href="/event/<%= event.id %>"> <%= event.discipline %> <%= event.event_date %></a><br> 
 <% end %>
+</div>
