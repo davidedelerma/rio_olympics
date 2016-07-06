@@ -13,6 +13,5 @@ end
 
 get '/ranking' do
   @ranking=Nation.ranking
-  #binding.pry
   erb :ranking
 end

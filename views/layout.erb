@@ -2,13 +2,21 @@
 <html>
 <head>
   <title>Rio Olympic Games 2016</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-<a href="/">Home</a>
-<a href="/nation">Nations</a>
-<a href="/athlete">Athletes</a>
-<a href="/event">Events</a>
-<a href="/ranking">General Ranking</a>
+<div class="row">
+  <div class ="col-2"><img class="logo" src="rio_logo.png"></div>
+    <div class="col-10">
+      <div class="nav">
+        <a href="/">Home</a>
+        <a href="/nation">Nations</a>
+        <a href="/athlete">Athletes</a>
+        <a href="/event">Events</a>
+        <a href="/ranking">General Ranking</a>
+      </div>
+    </div>
+  </div>
 <%= yield %>
 </body>
 </html>

@@ -25,11 +25,12 @@ event3=Event.new({'event_date' => '2016-10-12','discipline' =>'run'}).save
 event4=Event.new({'event_date' => '2016-10-12','discipline' =>'swimming'}).save
 
 medal1=Medal.new({'event_id' => event1.id,'athlete_id' => athlete1.id, 'medals_type' =>'gold'}).save
-medal2=Medal.new({'event_id' => event2.id,'athlete_id' => athlete2.id, 'medals_type' =>'silver'}).save
-medal3=Medal.new({'event_id' => event3.id,'athlete_id' => athlete1.id, 'medals_type' =>'silver'}).save
-medal4=Medal.new({'event_id' => event4.id,'athlete_id' => athlete1.id, 'medals_type' =>'no'}).save
-medal4=Medal.new({'event_id' => event1.id,'athlete_id' => athlete3.id, 'medals_type' =>'gold'}).save
-medal5=Medal.new({'event_id' => event1.id,'athlete_id' => athlete4.id, 'medals_type' =>'silver'}).save
+# medal2=Medal.new({'event_id' => event2.id,'athlete_id' => athlete2.id, 'medals_type' =>'silver'}).save
+# medal3=Medal.new({'event_id' => event3.id,'athlete_id' => athlete1.id, 'medals_type' =>'silver'}).save
+# medal4=Medal.new({'event_id' => event4.id,'athlete_id' => athlete1.id, 'medals_type' =>'no'}).save
+# medal5=Medal.new({'event_id' => event1.id,'athlete_id' => athlete3.id, 'medals_type' =>'gold'}).save
+# medal6=Medal.new({'event_id' => event1.id,'athlete_id' => athlete4.id, 'medals_type' =>'silver'}).save
+# medal7=Medal.new({'event_id' => event1.id,'athlete_id' => athlete2.id, 'medals_type' =>'gold'}).save
 
 
 binding.pry

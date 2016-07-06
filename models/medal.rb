@@ -1,6 +1,7 @@
 require('pry-byebug')
 require_relative('../db/sql_runner')
 require_relative('event')
+require_relative('athlete')
 
 class Medal
 
@@ -14,6 +15,7 @@ class Medal
   end
 
   def save()
+    return if check_if_nation_has_won_medal
     sql = "INSERT INTO medals (event_id, athlete_id, medals_type) VALUES ( '#{@event_id}', '#{@athlete_id}','#{medals_type}') RETURNING *"
     medal = run(sql).first
     result = Medal.new( medal )
@@ -33,6 +35,16 @@ class Medal
           medals_type = '#{options['medals_type']}'
           WHERE id = '#{options['id']}';"
     run(sql)
+  end
+
+  def check_if_nation_has_won_medal()
+    all_medals=Medal.all
+    athlete1=Athlete.find(@athlete_id)
+    for medal in all_medals
+      athlete2=Athlete.find(medal.athlete_id)
+      return true if (medal.medals_type == @medals_type && athlete1.nation_id != athlete2.nation_id)
+    end
+    return false
   end
 
   def self.destroy(id)

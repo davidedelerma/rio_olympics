@@ -12,9 +12,7 @@ end
 
 post '/medal' do 
   @medal=Medal.new(params)
-  @medal.save()
-  @event=Event.find(@medal.event_id)
-  @athlete=Athlete.find(@medal.athlete_id)
+  @saved=@medal.save()
   erb(:'medals/create')
 end
 
